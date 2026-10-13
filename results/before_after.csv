@@ -1,0 +1,59 @@
+section,metric,legacy,coupled,note
+baseline,yield [L/day],3.0233387297614223,8.58597846849739,legacy default mode = energy_limited; coupled default mode = mass_transfer (diffusion)
+baseline,T_evaporator [C],46.1870002746582,85.48607615316699,
+baseline,T_glass [C],35.66545009613037,76.98165242382287,legacy: T_amb + 0.35 (T_e - T_amb) heuristic; coupled: solved inner surface
+baseline,T_condensate film [C],35.66545009613037,77.06950712605891,legacy has no film node (= T_glass)
+baseline,"emergent thermal efficiency, latent / absorbed [-]",0.65,0.783385688398998,legacy: the INPUT eta_thermal = 0.65; coupled: result
+baseline,"energy efficiency, product latent / incident [-]",0.3149311176834815,0.8566322502643043,
+limits,evaporation prediction [kg/session],7.5816,9.53997607610821,legacy: Q_useful/h_fg (input eta); coupled: diffusion solution
+limits,condensation / cover capacity [kg/session],3.359265255290469,10.685922315848362,legacy: U A (T_e - T_amb) cap; coupled: ideal-evaporator (mode A) limit on the same cover
+limits,binding resistance (diagnostic),glass_uvalue,glass_uvalue,
+enhanced configuration,yield [L/day],4.152608885234573,12.901496440054656,"gain 2.0, eta_th 0.72 (legacy only), ejector 2 L/s through 8 mm throat, h_cond 12000, glass 1.4 m2"
+enhanced configuration,uplift over own baseline [%],37.35175765641925,50.262389864955196,
+enhanced configuration,chamber pressure [Pa],500.0,48593.27945580597,coupled: ejector asks for 10000 Pa (leak floor); the cover holds 48593
+enhanced configuration,boiling-limited,n/a,True,
+enhanced configuration,ejector pump power [W],3475.1503086970497,3475.1503086970497,"parasitic, not in the yield"
+enhanced configuration,vacuum load on cover [kN],141.155,73.82440876187164,
+one-at-a-time,G_opt 1.5 -> 2.0: yield [L/day],3.023 -> 4.203 (+39.0 %),8.586 -> 12.259 (+42.8 %),
+one-at-a-time,glass area 1.1 -> 1.5 m2: yield [L/day],3.023 -> 4.123 (+36.4 %),8.586 -> 8.151 (-5.1 %),
+one-at-a-time,glass area 1.1 -> 2.5 m2: yield [L/day],3.023 -> 6.823 (+125.7 %),8.586 -> 7.560 (-11.9 %),
+one-at-a-time,eta_thermal 0.65 -> 0.72: yield [L/day],3.023 -> 2.307 (-23.7 %),8.586 -> 8.586 (+0.0 %),
+one-at-a-time,eta_thermal 0.65 -> 0.45: yield [L/day],3.023 -> 4.724 (+56.2 %),8.586 -> 8.586 (+0.0 %),
+one-at-a-time,area utilisation 0.85 -> 1.0: yield [L/day],3.023 -> 2.487 (-17.7 %),8.586 -> 8.695 (+1.3 %),
+one-at-a-time,wind 2 -> 5 m/s: yield [L/day],3.023 -> 2.868 (-5.1 %),8.586 -> 8.083 (-5.9 %),
+one-at-a-time,"Venturi on, default ejector (1 L/s, 10 mm throat): yield [L/day]",3.023 -> 3.023 (+0.0 %),8.586 -> 9.617 (+12.0 %),
+one-at-a-time,"Venturi on, moderate ejector (0.5 L/s, 8 mm): yield [L/day]",3.023 -> 3.023,8.586 -> 9.197,"coupled: P_chamber 63316 Pa, pump 54 W"
+one-at-a-time,Venturi toggle changes yield?,False,True,
+tornado (top 8 by range),rank 1,glass_area (4.62 L/day),evaporator_area_geometric (14.34 L/day),
+tornado (top 8 by range),rank 2,eta_thermal (3.24 L/day),optical_gain (8.65 L/day),
+tornado (top 8 by range),rank 3,optical_gain (2.84 L/day),solar_irradiance (6.63 L/day),
+tornado (top 8 by range),rank 4,solar_irradiance (2.23 L/day),sunlight_hours (5.37 L/day),
+tornado (top 8 by range),rank 5,area_utilization_factor (2.01 L/day),collection_efficiency (2.67 L/day),
+tornado (top 8 by range),rank 6,sunlight_hours (1.89 L/day),eta_optical (2.35 L/day),
+tornado (top 8 by range),rank 7,collection_efficiency (0.94 L/day),diffusion_path_length (1.55 L/day),
+tornado (top 8 by range),rank 8,eta_optical (0.79 L/day),glass_transmittance (1.53 L/day),
+tornado (top 8 by range),rank of eta_thermal,2 of 14,not on the coupled path (zero effect),
+"Monte Carlo (N=2000, seed 42)","mean [L/day], all parameters",3.0386873077618537,8.664253833129,
+"Monte Carlo (N=2000, seed 42)","std [L/day], all parameters",1.0460123282384588,2.114411754742548,
+"Monte Carlo (N=2000, seed 42)","p05 [L/day], all parameters",1.51849907811951,5.504071963480612,
+"Monte Carlo (N=2000, seed 42)","p95 [L/day], all parameters",4.913315136046059,12.45255387107786,
+"Monte Carlo (N=2000, seed 42)","mean [L/day], artifact parameters (eta_thermal, f_util) excluded",3.05482883111951,8.667385939215114,
+"Monte Carlo (N=2000, seed 42)","std [L/day], artifact parameters (eta_thermal, f_util) excluded",0.7269044884584736,2.1481659439628578,
+"Monte Carlo (N=2000, seed 42)","p05 [L/day], artifact parameters (eta_thermal, f_util) excluded",1.9613509529659505,5.508684820274364,
+"Monte Carlo (N=2000, seed 42)","p95 [L/day], artifact parameters (eta_thermal, f_util) excluded",4.299774599860528,12.528951238621222,
+"Monte Carlo (N=2000, seed 42)",Spearman rho: eta_thermal vs yield,-0.6407637656909414,-0.006336175584043895,
+"Monte Carlo (N=2000, seed 42)",Spearman rho: area_utilization_factor vs yield,-0.3298271669567917,0.035200056519151174,
+"Monte Carlo (N=2000, seed 42)",widths,legacy list (13 parameters),"legacy list + glass_transmittance, glass_area, insulation_k, gap_convection (30 %), delta (40 %), alpha_g (30 %)",
+glass-to-evaporator ratio,legacy: condensation capacity >= evaporation (A_g/A_geo),2.482614311824827,,
+glass-to-evaporator ratio,"coupled, mode A: yield within 1 % of its asymptote",,9.372491416644763,
+glass-to-evaporator ratio,"coupled, mode A: asymptote [L/day]",,10.357513845292898,
+glass-to-evaporator ratio,"coupled, mode C: vapour gap becomes the dominant resistance (limited_by flips to 'evaporation')",,2.572854198352191,
+glass-to-evaporator ratio,coupled: smallest ratio without steam venting (cover T_c <= boiling point),,0.6808459036893821,below this the model is outside its validity (flagged in the result warnings)
+glass-to-evaporator ratio,"coupled, mode C: yield at ratio r_valid, 1.1, 1.5, 2.5, 5, 18 [L/day]",,9.28 / 8.59 / 8.15 / 7.56 / 7.04 / 6.64,"diffusion mode is highest at the smallest valid cover and FALLS with more glass (colder cover, larger sensible leak)"
+glass-to-evaporator ratio,"coupled, mode B: J_emp evaporation cap binds from ratio",,0.6815267495930715,"cap = 6.426 L/day is below the ideal-evaporator limit (10.36) at every valid ratio, so the cap binds throughout"
+Kalpar sizing (61 households x 4 persons x 7.2 L/person/day = 1756.8 L/day),default module: productivity [L/m2/day],3.0233387297614223,8.58597846849739,
+Kalpar sizing (61 households x 4 persons x 7.2 L/person/day = 1756.8 L/day),default module: required area [m2],581.0794479316025,204.612672445643,
+Kalpar sizing (61 households x 4 persons x 7.2 L/person/day = 1756.8 L/day),default module: 1 m2 modules,582,205,
+Kalpar sizing (61 households x 4 persons x 7.2 L/person/day = 1756.8 L/day),enhanced module: productivity [L/m2/day],4.152608885234573,12.901496440054656,
+Kalpar sizing (61 households x 4 persons x 7.2 L/person/day = 1756.8 L/day),enhanced module: required area [m2],423.05934619719466,136.1702503397782,
+Kalpar sizing (61 households x 4 persons x 7.2 L/person/day = 1756.8 L/day),enhanced module: 1 m2 modules,424,137,

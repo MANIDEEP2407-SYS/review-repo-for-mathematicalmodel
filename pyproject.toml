@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "solar_desalination_simulator"
+version = "0.0.1"
+description = "Mathematical simulator for a passive solar desalination system (FeS-functionalized cotton 3D-flower evaporator)"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Varshith Garrepalli" }]
+license = { text = "MIT" }
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+    "plotly>=5.20",
+    "pydantic>=2.5",
+    "streamlit>=1.30",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "pytest-cov>=4.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"

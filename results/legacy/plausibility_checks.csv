@@ -1,0 +1,2 @@
+check,predicted,reference,passed,notes
+"Still plausibility (legacy, mode=energy_limited) -- consistency, not validation",3.0233387297614223,3.5,True,"Predicted 3.02 L/m2/day vs a typical published band of 2-5. Includes the user-set reflector gain (x1.5), a perfectly sealed chamber and no side/edge or basin losses beyond the insulation term, so an over-the-band value is expected from the model's missing loss paths, not evidence of a better device. Inside the band would prove nothing either."

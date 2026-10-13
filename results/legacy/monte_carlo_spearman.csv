@@ -1,0 +1,14 @@
+,spearman_rho_with_yield
+eta_thermal,-0.6407637656909414
+eta_optical,0.361498243874561
+optical_gain,0.3400588660147165
+area_utilization_factor,-0.3298271669567917
+solar_irradiance,0.3090179257544814
+sunlight_hours,0.23850736912684228
+collection_efficiency,0.11374749893687473
+wind_speed,0.046677655169413794
+ambient_temperature,0.04280065370016343
+condensation_coefficient,0.03822308305577076
+empirical_flux,0.03342585085646271
+mass_transfer_coefficient,0.01748309237077309
+relative_humidity,0.011479693369923343
